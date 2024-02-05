@@ -79,8 +79,10 @@ def game_loop():
     
     sys.exit
 
+
 def main():
     game_loop()
+
 
 if __name__ == "__main__":
     main()
