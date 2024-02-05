@@ -3,8 +3,8 @@ import sys
 
 
 def launch():
-    launch_prompt = (input(
-        "Welcome !, this is my Rock, Paper, Scissors game would you like to play ? (Y/N)")).lower()
+    launch_prompt = input(
+        "Welcome !, this is my Rock, Paper, Scissors game would you like to play ? (Y/N)").lower()
     if launch_prompt == "n":
         sys.exit()
     elif launch_prompt == "y":
@@ -26,58 +26,53 @@ def play_again():
         play_again()
 
 
-def playing():
-    def choices_list():
-        print(
-            f"Choices were :  \n-Player  : {player_choice} \n-Pc : {pc_choice}")
+def choices_list(player_choice):
+    pc_choices = ["rock", "paper", "scissors"]
+    pc_choice = random.choice(pc_choices)
+    print(f"Choices were :  \n-Player  : {player_choice} \n-Pc : {pc_choice}")
+    player_choice = input(
+        "Chose between ('rock','paper','scissors') or type 'quit' to exit : ").lower()
+    if player_choice == "quit":
+        sys.exit()
+    if player_choice not in pc_choices:
+        print("Invalid choice please chose correctly")
 
-    while True:
-        pc_choices = ["rock", "paper", "scissors"]
-        pc_choice = random.choice(pc_choices)
-        player_choice = (input(
-            "Chose between ('rock','paper','scissor') or type 'quit' to exit : ")).lower()
-        if player_choice == "quit":
-            sys.exit()
-        if player_choice not in ["rock", "paper", 'scissors']:
-            print("Invalid choice please chose correctly")
-            continue
-        elif player_choice == "rock" and pc_choice == "rock":
-            print("Tie !")
-            choices_list()
+
+def playing(player_choice):
+    pc_choices = ["rock", "paper", "scissors"]
+    pc_choice = random.choice(pc_choices)
+    print(f'PC chose: {pc_choice}')
+    match player_choice:
+        case "rock":
+            if pc_choice == "rock":
+                print("Tie !")
+            elif pc_choice == "paper":
+                print("You lose ! ")
+            else:
+                print("You WIN  !")
+            choices_list(player_choice)
             play_again()
-        elif player_choice == "rock" and pc_choice == "paper":
-            print("You lose ! ")
-            choices_list()
+        case "paper":
+            if pc_choice == "rock":
+                print("you WIN !")
+            elif pc_choice == "paper":
+                print("Tie !")
+            else:
+                print("You lose !")
+            choices_list(player_choice)
             play_again()
-        elif player_choice == "rock" and pc_choice == "scissors":
-            print("You WIN  !")
-            choices_list()
-            play_again()
-        elif player_choice == "paper" and pc_choice == "rock":
-            print("you WIN !")
-            choices_list()
-            play_again()
-        elif player_choice == "paper" and pc_choice == "paper":
-            print("Tie !")
-            choices_list()
-            play_again()
-        elif player_choice == "paper" and pc_choice == "scissors":
-            print("You lose !")
-            choices_list()
-            play_again()
-        elif player_choice == "scissors" and pc_choice == "rock":
-            print("You lose !")
-            choices_list()
-            play_again()
-        elif player_choice == "scissors" and pc_choice == "paper":
-            print("You WIN !")
-            choices_list()
-            play_again()
-        elif player_choice == "scissors" and pc_choice == "scissors":
-            print("Tie !")
-            choices_list()
+        case "scissors":
+            if pc_choice == "rock":
+                print("You lose !")
+            elif pc_choice == "paper":
+                print("You WIN !")
+            else:
+                print("Tie !")
+
+            choices_list(player_choice)
             play_again()
 
 
-launch()
-playing()
+if __name__ == "__main__":
+    launch()
+    playing(player_choice, pc_choice)
