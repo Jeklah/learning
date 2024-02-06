@@ -11,17 +11,15 @@ def launch():
         return
     else:
         print("Invalid choice")
-        launch()
+        # launch()
 
 
-def play_again():
+def play_again() -> bool:
     if (input(
-        "Would you like to play again type (n) to quit and (y) to play again ? ")).lower() == "n":
-        return False
-    if (input(
-        "Would you like to play again type (n) to quit and (y) to play again ? ")).lower() == "y":
+            "Would you like to play again type (n) to quit and (y) to play again ? ")).lower() == "y":
         return True
-    print("Please type a correct response (Y/N)")
+    else:
+        return False
 
 
 def choices_list():
@@ -63,7 +61,7 @@ def game(pc_choice, pc_rock, pc_paper, pc_scis):
         print(pc_paper)
     else:
         print(pc_scis)
-    choices_list()
+    # choices_list()
     # play_again()
 
 
@@ -76,8 +74,9 @@ def game_loop():
         choice = choices_list()
         playing(choice)
         replay = play_again()
-    
-    sys.exit
+
+    print("Thanks for playing !")
+    sys.exit()
 
 
 def main():
