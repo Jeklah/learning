@@ -11,7 +11,6 @@ def launch():
         return
     else:
         print("Invalid choice")
-        # launch()
 
 
 def play_again() -> bool:
@@ -22,7 +21,7 @@ def play_again() -> bool:
         return False
 
 
-def choices_list():
+def choices_list() -> str:
     pc_choices = ["rock", "paper", "scissors"]
     pc_choice = random.choice(pc_choices)
     player_choice = input(
@@ -35,7 +34,7 @@ def choices_list():
     return player_choice
 
 
-def playing(player_choice):
+def playing(player_choice: str):
     pc_choices = ["rock", "paper", "scissors"]
     pc_choice = random.choice(pc_choices)
     print(f'PC chose: {pc_choice}')
@@ -54,15 +53,13 @@ def playing(player_choice):
             )
 
 
-def game(pc_choice, pc_rock, pc_paper, pc_scis):
+def game(pc_choice: str, pc_rock: str, pc_paper: str, pc_scis: str):
     if pc_choice == "rock":
         print(pc_rock)
     elif pc_choice == "paper":
         print(pc_paper)
     else:
         print(pc_scis)
-    # choices_list()
-    # play_again()
 
 
 def game_loop():
