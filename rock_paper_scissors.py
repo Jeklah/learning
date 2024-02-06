@@ -1,42 +1,42 @@
 import random
 import sys
 
+PC_CHOICES = ["rock", "paper", "scissors"]
+
 
 def launch():
     launch_prompt = input(
-        "Welcome !, this is my Rock, Paper, Scissors game would you like to play ? (Y/N)").lower()
-    if launch_prompt == "n":
+        "Welcome !, this is my Rock, Paper, Scissors game push enter to play or q to exit.").lower()
+    if launch_prompt == "q":
         sys.exit()
-    elif launch_prompt == "y":
+    elif launch_prompt == "":
         return
     else:
         print("Invalid choice")
 
 
-def play_again() -> bool:
-    if (input(
-            "Would you like to play again type (n) to quit and (y) to play again ? ")).lower() == "y":
-        return True
-    else:
-        return False
+def play_again():
+    return (
+        input(
+            "Would you like to play again type (n) to quit and (y) to play again ? "
+        )
+    ).lower() == "y"
 
 
-def choices_list() -> str:
-    pc_choices = ["rock", "paper", "scissors"]
-    pc_choice = random.choice(pc_choices)
-    player_choice = input(
-        "Chose between ('rock','paper','scissors') or type 'quit' to exit : ").lower()
-    print(f"Choices were :  \n-Player  : {player_choice} \n-Pc : {pc_choice}")
-    if player_choice == "quit":
-        sys.exit()
-    if player_choice not in pc_choices:
-        print("Invalid choice please chose correctly")
+def choices_list(PC_CHOICES: list) -> str:
+    player_choice = str
+    while player_choice not in ['rock', 'paper', 'scissors', 'quit']:
+        player_choice = input(
+            "Chose between ('rock','paper','scissors') or type 'quit' to exit : ").lower()
+        if player_choice == "quit":
+            sys.exit()
+        if player_choice not in PC_CHOICES:
+            print("Invalid choice please chose correctly")
     return player_choice
 
 
-def playing(player_choice: str):
-    pc_choices = ["rock", "paper", "scissors"]
-    pc_choice = random.choice(pc_choices)
+def playing(player_choice: str, PC_CHOICES: list):
+    pc_choice = random.choice(PC_CHOICES)
     print(f'PC chose: {pc_choice}')
     match player_choice:
         case "rock":
@@ -68,8 +68,8 @@ def game_loop():
 
     while replay:
         launch()
-        choice = choices_list()
-        playing(choice)
+        choice = choices_list(PC_CHOICES)
+        playing(choice, PC_CHOICES)
         replay = play_again()
 
     print("Thanks for playing !")
